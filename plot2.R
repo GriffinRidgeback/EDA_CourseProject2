@@ -1,8 +1,8 @@
 # Read in the National Emissions Inventory Data
-#NEI <- readRDS("./data/summarySCC_PM25.rds")
+NEI <- readRDS("./data/summarySCC_PM25.rds")
 
 # Read in the Source Classification Code Table
-#SCC <- readRDS("./data/Source_Classification_Code.rds")
+SCC <- readRDS("./data/Source_Classification_Code.rds")
 
 # Select only data for FIPS 24510 (Baltimore City)
 baltimore <- NEI[NEI$fips == "24510", ]
