@@ -25,8 +25,13 @@ library(ggplot2)
 # Set up the graphics device
 png("plot3.png")
 # 
-# Set up the plot
-qplot(year, Emissions, data = baltimore, facets = type ~ ., color = type, shape = type, geom = c("point", "smooth"), method = "lm")
+# Set up the plot:
+#
+# 1. plot year against emission
+# 2. remove minor outliers beyond y data point 400
+# 3. group all data based on type factor
+# 4. other aesthetics, parameters as noted
+qplot(year, Emissions, data = baltimore, ylim = c(0, 400), facets = type ~ ., color = type, shape = type, geom = c("point", "smooth"), method = "lm")
 #
 # Write the plot
 dev.off()
