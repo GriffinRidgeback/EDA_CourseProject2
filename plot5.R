@@ -34,7 +34,7 @@ emissionData  <- bigData[grepl("Mobile", bigData$EI.Sector), ]
 png("plot5.png")
 # 
 # Set up the plot:
-qplot(year, Emissions, data = emissionData, facets = EI.Sector ~ .)
+qplot(year, Emissions, data = emissionData, xlab = "", facets = EI.Sector ~ .)
 #
 # Write the plot
 dev.off()
