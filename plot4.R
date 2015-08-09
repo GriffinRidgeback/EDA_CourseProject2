@@ -23,7 +23,7 @@ SCCsubset <- select(SCC, starts_with("SCC", ignore.case = F))
 SCCsubset <- select(SCCsubset, -SCC.Level.Two)
 #
 # Now join based on mutual key SCC
-bigData  <- join(NEIsubset, SCCsubset, by = "SCC", match = "first")
+bigData  <- plyr::join(NEIsubset, SCCsubset, by = "SCC", match = "all")
 #
 # Filter out anything not "External Combustion Boilers" because,
 # according to the codebook for the SCC data (http://www.nj.gov/dep/aqm/es/scc.pdf),
