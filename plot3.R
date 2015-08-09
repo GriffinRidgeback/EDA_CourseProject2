@@ -31,7 +31,7 @@ png("plot3.png")
 # 2. remove minor outliers beyond y data point 400
 # 3. group all data based on type factor
 # 4. other aesthetics, parameters as noted
-qplot(year, Emissions, data = baltimore, xlab = "", main = "Coal combustion emissions", ylab = "Total emissions (tons)", ylim = c(0, 400), facets = type ~ ., color = type, shape = type, geom = c("point", "smooth"), method = "lm")
+qplot(year, Emissions, data = baltimore, xlab = "", main = "Emissions by category (Baltimore City)", ylab = "Total emissions (tons)", ylim = c(0, 400), facets = type ~ ., color = type, shape = type, geom = c("point", "smooth"), method = "lm")
 #
 # Write the plot
 dev.off()
