@@ -11,30 +11,29 @@ SCC <- readRDS("./data/Source_Classification_Code.rds")
 #
 # Section Two: massage the data ----
 #
-# need plyr, dplyr for this work
-library(plyr)
-library(dplyr)
-#
 # Select only data for FIPS 24510 (Baltimore City)
 baltimore <- NEI[NEI$fips == "24510", ]
 #
-# Select only the columns we need prior to performing join
-NEIsubset <- select(baltimore, SCC, Emissions, year)
-SCCsubset <- select(SCC, SCC, starts_with("EI", ignore.case = F))
+# Extract only those entries that define motor vehicle emissions
+mobile  <- grep("^Mobile -(.*)Road(.*)", SCC$EI.Sector, ignore.case = T)
 #
-# Now join based on mutual key SCC
-bigData  <- plyr::join(NEIsubset, SCCsubset, by = "SCC", match = "all")
+# Subset the SCC data based on those indices
+mobileSCC  <- SCC[mobile, ]
 #
-# Now subset the dataframe based on "Coal" entries in the Level.Three and Level.Four columns
-emissionData  <- bigData[grepl("Mobile", bigData$EI.Sector), ]
+# Subset the Baltimore data based on the SCCs for motor vehicle emissions
+emissionData  <- baltimore[baltimore$SCC %in% mobileSCC$SCC, ]
 # 
 # Section Three: plot the data ----
+#
+# Load the ggplot2 library
+#
+library(ggplot2)
 #
 # Set up the graphics device
 png("plot5.png")
 # 
 # Set up the plot:
-qplot(year, Emissions, data = emissionData, xlab = "", facets = EI.Sector ~ .)
+qplot(year, Emissions, data = emissionData, xlab = "", ylab = "Total emissions (in tons)", main = "Motor Vehicle Emissions (Baltimore)")
 #
 # Write the plot
 dev.off()
