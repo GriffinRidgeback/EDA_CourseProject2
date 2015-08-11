@@ -35,7 +35,7 @@ lines(x, y)
 points(x, y, col = c("blue", "orange", "green", "red"), pch = 18, cex = 2.0)
 #
 # Add a plot title
-title("Total US PM2.5 Emissions (1999-2008)")
+title("Total PM2.5 Emissions:  US (1999-2008)")
 #
 # Write the plot
 dev.off()
