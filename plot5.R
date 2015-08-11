@@ -1,6 +1,20 @@
 # R source for Course Project 2
 # Coursera Exploratory Data Analysis
 #
+# Section Zero: load in the packages ----
+#
+# plyr (for join)
+if(!require(plyr)){
+  install.packages("plyr")
+  library(plyr)
+}
+#
+# lattice (for xyplot)
+if(!require(lattice)){
+  install.packages("lattice")
+  library(lattice)
+}
+#
 # Section One: read in the data ----
 #
 # Read in the National Emissions Inventory Data
@@ -18,22 +32,26 @@ baltimore <- NEI[NEI$fips == "24510", ]
 mobile  <- grep("^Mobile -(.*)Road(.*)", SCC$EI.Sector, ignore.case = T)
 #
 # Subset the SCC data based on those indices
-mobileSCC  <- SCC[mobile, ]
+mobileSCC  <- SCC[mobile, c("SCC", "EI.Sector")]
 #
-# Subset the Baltimore data based on the SCCs for motor vehicle emissions
-emissionData  <- baltimore[baltimore$SCC %in% mobileSCC$SCC, ]
-# 
+# Join the two datasets by their common key
+emissionData  <- join(baltimore, mobileSCC, by = "SCC", type = "inner")
+#
 # Section Three: plot the data ----
 #
-# Load the ggplot2 library
-#
-library(ggplot2)
-#
 # Set up the graphics device
-png("plot5.png")
+png("plot5.png", width = 1440, height = 720)
 # 
 # Set up the plot:
-qplot(year, Emissions, data = emissionData, xlab = "", ylab = "Total emissions (in tons)", main = "Motor Vehicle Emissions (Baltimore)")
+#
+# visualize emissions by year
+# condition by type of motor vehicle
+xyplot(Emissions ~ year | EI.Sector, 
+       data = emissionData, 
+       groups = EI.Sector,
+       xlab = "", 
+       ylab = "Total emissions (in tons)", 
+       main = "Emissions by Motor Vehicle Type:  Baltimore (1999-2008)") 
 #
 # Write the plot
 dev.off()

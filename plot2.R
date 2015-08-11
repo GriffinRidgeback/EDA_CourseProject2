@@ -29,7 +29,7 @@ y <- sapply(emissionsData, sum, na.rm = F)
 png("plot2.png")
 #
 # Set up the plot
-plot(x, y, type = "n", xlab = "", ylab = "Totals (in tons)")
+plot(x, y, type = "n", xlab = "", ylab = "Emission totals (in tons)")
 #
 # Time series uses lines
 lines(x, y)
@@ -38,7 +38,7 @@ lines(x, y)
 points(x, y, col = c("blue", "orange", "green", "red"), pch = 18, cex = 2.0)
 #
 # Add a plot title
-title("Total PM2.5 Emissions for Baltimore City (1999-2008)")
+title("Total PM2.5 Emissions:  Baltimore City (1999-2008)")
 #
 # Write the plot
 dev.off()

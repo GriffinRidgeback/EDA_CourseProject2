@@ -26,7 +26,13 @@ emissionData  <- NEI[NEI$SCC %in% coalSCC$SCC, ]
 png("plot4.png")
 # 
 # Set up the plot:
-with(emissionData, plot(year, Emissions, xlab = "", ylim = c(0, 14500), main = "Coal combustion emissions (US Totals)"))
+with(emissionData, 
+     plot(year, 
+          Emissions, 
+          xlab = "", 
+          ylab = "Total emissions (tons)", 
+          ylim = c(0, 14500), 
+          main = "Emissions from coal combustion sources:  US (1999-2008))"))
 #
 # Write the plot
 dev.off()
