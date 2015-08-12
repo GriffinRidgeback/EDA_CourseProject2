@@ -1,7 +1,15 @@
 # R source for Course Project 2
 # Coursera Exploratory Data Analysis
 #
-# Section One: read in the data ----
+# Section Zero: load in the packages ----
+#
+# ggplot2 (for qplot)
+if(!require(ggplot2)){
+  install.packages("ggplot2")
+  library(ggplot2)
+}
+#
+## Section One: read in the data ----
 #
 # Read in the National Emissions Inventory Data
 NEI <- readRDS("./data/summarySCC_PM25.rds")
@@ -19,11 +27,8 @@ baltimore$type  <- as.factor(baltimore$type)
 # 
 # Section Three: plot the data ----
 #
-# Load the ggplot2 package
-library(ggplot2)
-#
 # Set up the graphics device
-png("plot3.png")
+png("plot3.png", width = 1440, height = 480)
 # 
 # Set up the plot:
 #
@@ -35,14 +40,14 @@ qplot(year,
       Emissions, 
       data = baltimore, 
       xlab = "", 
-      main = "Emissions by category:  Baltimore City (1999-2008))", 
+      main = "Emissions by category:  Baltimore City (1999-2008)", 
       ylab = "Total emissions (tons)", 
       ylim = c(0, 400), 
-      facets = type ~ ., 
+      facets = . ~ type, 
       color = type, 
       shape = type, 
-      geom = c("point", "smooth"), 
-      method = "lm")
+      geom = c("point", "smooth"),
+      method = "loess")
 #
 # Write the plot
 dev.off()
