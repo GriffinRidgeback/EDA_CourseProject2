@@ -42,6 +42,7 @@ losangeles$fips <- as.factor("Los Angeles")
 cityData <- rbind(baltimore, losangeles)
 #
 # Extract only those entries that define motor vehicle emissions
+# Source: http://www.epa.gov/otaq/hwy.htm
 mobile  <- grep("^Mobile -(.*)Road(.*)", SCC$EI.Sector, ignore.case = T)
 #
 # Subset the SCC data based on those indices

@@ -29,6 +29,7 @@ SCC <- readRDS("./data/Source_Classification_Code.rds")
 baltimore <- NEI[NEI$fips == "24510", ]
 #
 # Extract only those entries that define motor vehicle emissions
+# Source: http://www.epa.gov/otaq/hwy.htm
 mobile  <- grep("^Mobile -(.*)Road(.*)", SCC$EI.Sector, ignore.case = T)
 #
 # Subset the SCC data based on those indices
