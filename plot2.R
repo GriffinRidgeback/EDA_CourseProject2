@@ -21,11 +21,11 @@ emissionsData  <- split(baltimore$Emissions, baltimore$year)
 x <- unique(baltimore$year)
 #
 # Sum data for y-axis values
-y <- sapply(emissionsData, sum, na.rm = F)
+y <- sapply(emissionsData, sum, na.rm = T)
 #
 # Section Three: plot the data ----
 #
-# Set up the graphics device
+# Set up the graphics device (using default width/height)
 png("plot2.png")
 #
 # Set up the plot

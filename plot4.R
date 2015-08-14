@@ -33,7 +33,6 @@ coal  <- grep("^fuel comb -(.*)- coal$", SCC$EI.Sector, ignore.case = T)
 coalSCC  <- SCC[coal, c("SCC", "EI.Sector")]
 #
 # Subset the NEI data for just coal-related emissions
-#emissionData  <- NEI[NEI$SCC %in% coalSCC$SCC, ]
 emissionData  <- join(NEI, coalSCC, by = "SCC", type = "inner")
 #
 # Section Three: plot the data ----

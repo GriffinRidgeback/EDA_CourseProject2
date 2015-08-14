@@ -18,7 +18,7 @@ emissionsData  <- split(NEI$Emissions, NEI$year)
 x <- unique(NEI$year)
 #
 # Sum data for y-axis values
-y <- sapply(emissionsData, sum, na.rm = F)
+y <- sapply(emissionsData, sum, na.rm = T)
 #
 # Section Three: plot the data ----
 #
